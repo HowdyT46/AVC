@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Propiedades en Venta</title>
+  <link rel="stylesheet" href="info.json">
+  <link rel="stylesheet" href="casa.css">
+</head>
+<body>
+
+    <header>
+        <h1>Propiedades en venta</h1>
+        
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="contactanos.php">Contáctanos</a>
+        <a href="login/login.php">Login</a>
+    </nav>
+    <input type="text" id="searchBar" placeholder="Buscar por ubicación o tipo...">
+
+    <div id="propertiesContainer" class="card-container"></div>
+  </div>
+
+  <script>
+    const data = [
+      {
+        "img":"img/1.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "A 5 minutosd de UNITEC",
+        "precio": "1280000"
+      },
+      {
+        "img":"img/2.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Frac. Valle de Bravo, Sector Plaza las Torres",
+        "precio": "1500000"
+      },
+      {
+        "img":"img/3.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Paseos del Alba, Cerca de plaza Pinocelli y Miguel de la Madrid",
+        "precio": "1980000"
+      },
+      {
+        "img":"img/4.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Frac. Ciudad Moderna",
+        "precio": "2070000"
+      },
+      {
+        "img":"img/5.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Frac. Terranova, cerca del Smart y de UNIV. Tecnologica",
+        "precio": "2150000"
+      },
+      {
+        "img":"img/6.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Frac. Villa Hermosa, Entre Simon Barra y Valentin fuentes",
+        "precio": "2350000"
+      },
+      {
+        "img":"img/7.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Las Albadas/ Cerrada Portobello",
+        "precio": "2998000"
+      },
+      {
+        "img":"img/8.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Pradera Dorada",
+        "precio": "3300000"
+      },
+      {
+        "img":"img/9.jpg",
+        "CDT": "Departamento",
+        "tipo": "Venta",
+        "ubicacion": "Sector Campos Eliseos, piso 7",
+        "precio": "3919128"
+      },
+      {
+        "img":"img/10.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Jardines de San Carlos I",
+        "precio": "3950000"
+      },
+      {
+        "img":"img/11.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Paseo de las palmas",
+        "precio": "4250000"
+      },
+      {
+        "img":"img/12.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Fracc. Los Nogales",
+        "precio": "7300000"
+      },
+      {
+        "img":"img/13.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Fracc. Adicion Campestre",
+        "precio": "7480000"
+      },
+      {
+        "img":"img/14.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Hacienda Recidencial, por canal 44",
+        "precio": "9805000"
+      },
+      {
+        "img":"img/15.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Campos Eliseos, Cerrada Norte",
+        "precio": "14850000"
+      },
+      {
+        "img":"img/16.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Mision de los Lagos",
+        "precio": "15200000"
+      },
+      {
+        "img":"img/17.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Casa en el Campestre",
+        "precio": "24000000"
+      },
+      {
+        "img":"img/19.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Jardin de Eventos Cerca a Paseo Triunfo  de la Republica y Av. del Charro",
+        "precio": "5800000"
+      },
+      {
+        "img":"img/20.jpg",
+        "CDT": "Casa",
+        "tipo": "Venta",
+        "ubicacion": "Calle Pablo Neruda",
+        "precio": "8550000"
+      }
+    ];
+
+    const container = document.getElementById('propertiesContainer');
+    const searchBar = document.getElementById('searchBar');
+
+    function renderProperties(items) {
+      container.innerHTML = '';
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'property-card';
+        card.innerHTML = `
+          <img src="${item.img}" alt="${item.CDT}">
+          <div class="property-info">
+            <h2>${item.CDT}</h2>
+            <p><strong>Ubicación:</strong> ${item.ubicacion}</p>
+            <p><strong>Precio:</strong> $${item.precio}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    searchBar.addEventListener('input', () => {
+      const query = searchBar.value.toLowerCase();
+      const filtered = data.filter(item =>
+        item.ubicacion.toLowerCase().includes(query) ||
+        item.CDT.toLowerCase().includes(query)
+      );
+      renderProperties(filtered);
+    });
+
+    renderProperties(data);
+  </script>
+  <footer>
+        &copy; 2025 Astrid Vende Casas
+    </footer>
+</body>
+</html>
